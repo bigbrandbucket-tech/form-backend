@@ -6,13 +6,13 @@ var transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: "anubh896@gmail.com",
-    pass: "ciwc mrej lsbw gprx",
+    user: "info@indiaevisaservices.org",
+    pass: "rfcy irvi epqp tmhi",
   },
 });
 
 class UserData {
-  static insert(data, callback) {
+  static async insert(data, callback) {
     let tempId = "CAN" + Math.floor(Math.random() * 1000000000);
     con.query(
       "INSERT INTO formDetails SET ?",
@@ -77,16 +77,19 @@ class UserData {
            </html>
            `,
           };
-
-          transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-              console.log(error);
-              return res.json({ message: "Error sending mail" });
-            } else {
-              console.log('error');
-              return res.json({ message: "Done", success: true });
-            }
+          await new Promise((resolve, reject) => {
+            transporter.sendMail(mailOptions, function (error, info) {
+              if (error) {
+                console.log(error);
+                return res.json({ message: "Error sending mail" });
+              } else {
+                console.log('error');
+                return res.json({ message: "Done", success: true });
+              }
+            });
           });
+
+          
         }
         callback(null, results);
       }
