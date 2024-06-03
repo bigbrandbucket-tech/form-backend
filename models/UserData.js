@@ -22,6 +22,7 @@ class UserData {
           return callback(error);
         }
         if (results) {
+          console.error('Error start:');
           var mailOptions = {
             from: "info@indiaevisaservices.org",
             to: data.email,
@@ -80,11 +81,11 @@ class UserData {
           
           transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
-              console.log(error);
-              return res.json({ message: "Error sending mail" });
+              console.error('Error sending mail:', error);
+              return callback(error); // Correctly return the error to the callback
             } else {
-              console.log('error');
-              return res.json({ message: "Done", success: true });
+              console.log('Email sent: ' + info.response);
+              return callback(null, { message: "Done", success: true });
             }
           });
         }
