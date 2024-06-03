@@ -13,7 +13,7 @@ var transporter = nodemailer.createTransport({
 
 class UserData {
   static insert(data, callback) {
-    let tempId = "IVS" + Math.floor(Math.random() * 1000000000);
+    let tempId = "CAN" + Math.floor(Math.random() * 1000000000);
     con.query(
       "INSERT INTO formDetails SET ?",
       { ...data, id: tempId },
@@ -83,6 +83,7 @@ class UserData {
               console.log(error);
               return res.json({ message: "Error sending mail" });
             } else {
+              console.log('error');
               return res.json({ message: "Done", success: true });
             }
           });
