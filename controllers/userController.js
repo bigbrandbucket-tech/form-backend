@@ -37,3 +37,14 @@ export const getData = (req, res) => {
     }
   });
 };
+
+export const getAllData = (req, res) => {
+  UserData.findAll((error, result) => {
+    if (error) {
+      console.error('Error retrieving data:', error);
+      return res.status(500).json({ error: error.message });
+    }
+    res.json(result);
+  });
+};
+

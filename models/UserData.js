@@ -119,6 +119,18 @@ class UserData {
       }
     );
   }
+
+  static findAll(callback) {
+    con.query(
+      "SELECT * FROM formDetails",
+      (error, results) => {
+        if (error) {
+          return callback(error);
+        }
+        callback(null, results);
+      }
+    );
+  }
 }
 
 export default UserData;
