@@ -6,8 +6,8 @@ var transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: "info@indiaevisaservices.org",
-    pass: "rfcy irvi epqp tmhi",
+    user: "anubh896@gmail.com",
+    pass: "ciwc mrej lsbw gprx",
   },
 });
 
