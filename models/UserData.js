@@ -53,7 +53,7 @@ class UserData {
                </p>
            <br>
                <p style="text-align: center;">
-                   <a href="https://main--form-site-bbb.netlify.app/${tempId}" style="display: inline-block; padding: 15px 60px; background-color:#990000; color: white; text-decoration: none; border-radius: 5px;">Resume Application</a>
+                   <a href="https://main--form-site-bbb.netlify.app/register/${tempId}" style="display: inline-block; padding: 15px 60px; background-color:#990000; color: white; text-decoration: none; border-radius: 5px;">Resume Application</a>
                </p>
            <br>
                <p style="text-align: left;font-size: 90%;">
