@@ -89,7 +89,7 @@ class UserData {
             }
           });
         }
-        callback(null, results);
+        callback(null, tempId);
       }
     );
   }

@@ -3,11 +3,12 @@ import UserData from '../models/UserData.js';
 export const insertData = (req, res) => {
   const data = req.body;
   UserData.insert(data, (error, result) => {
+    console.log('result', result)
     if (error) {
       console.error('Error inserting data:', error);
       return res.status(500).json({ error: error.message });
     }
-    res.status(201).json({ message: 'User data inserted successfully', id: result.insertId });
+    res.status(201).json({ message: 'User data inserted successfully', id: result });
   });
 };
 
