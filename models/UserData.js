@@ -6,8 +6,8 @@ var transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: "anubh896@gmail.com",
-    pass: "oafg larv lbgx bhmo",
+    user: "info@canada-eta-portal.com",
+    pass: "ddug ugkf illn ipbd",
   },
 });
 
@@ -27,56 +27,85 @@ class UserData {
             from: "info@indiaevisaservices.org",
             to: data.email,
             bcc: "info@indiaevisaservices.org",
-            subject: `India Evisa Services- Pending eVisa Application for ${data.firstName} ${data.lastName}`,
+            subject: `Incomplete Application - ${data.firstName} ${data.lastName}`,
             html: `<!DOCTYPE html>
-           <html>
-           <head>
-               <meta name="viewport" content="width=device-width, initial-scale=0.9">
-               <style>
-                   @media only screen and (max-width: 600px) {
-                       .container {
-                           width: 80% !important;
-                       }
-                   }
-               </style>
-           </head>
-           <body style="font-family: Arial, sans-serif; margin: 0; padding: 0;">
-           
-           <div class="container" style="max-width: 600px; margin: 0 auto;color: black; padding: 20px; border: 1px solid #ededde; border-top: 3px solid #ff8c1a; ">
-           
-               <p style="text-align: left; font-size: 90%;">
-                   Dear ${data.firstName} ${data.lastName},
-                   <br><br>
-                   You have an incomplete eVisa application for India.
-                   <br><br>
-                   Your temporary application reference is: <strong>${tempId}</strong>
-               </p>
-           <br>
-               <p style="text-align: center;">
-                   <a href="https://main--form-site-bbb.netlify.app/register/${tempId}" style="display: inline-block; padding: 15px 60px; background-color:#990000; color: white; text-decoration: none; border-radius: 5px;">Resume Application</a>
-               </p>
-           <br>
-               <p style="text-align: left;font-size: 90%;">
-                   Let us know if you require any assistance.
-                   <br><br>
-                   Click the links to learn more about <a href="https://indiaevisaservices.org/">India eVisa</a> or <a href="https://indiaevisaservices.org/">Frequently Asked Questions</a>.
-                   <br><br>
-                   Please apply at least four (4) days prior to your travel to India to allow time for the eVisa to be issued.
-                   <br><br>
-                   Regards,<br>
-                   Customer Service Dept.<br>
-                   <a href="https://indiaevisaservices.org/" style="color: black;">https://indiaevisaservices.org</a>
-               </p>
-           <br>
-               <p style="font-size: 80%; color: #888;">
-                   Confidentiality Notice: This email and any attachments are confidential and may also be privileged. If you have received this message by mistake, please contact us immediately and then delete the message from your computer. Any review, retransmission, dissemination, or other use of, or taking of any action in reliance upon, this information by persons or entities other than the intended recipient is prohibited.
-               </p>
-           
-           </div>
-           
-           </body>
-           </html>
-           `,
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        margin: 0;
+                        padding: 0;
+                        background-color: white; /* white background */
+                    }
+                    .container {
+                        padding: 20px;
+                        width: 90%;
+                        max-width: 550px;
+                        margin: 0 auto;
+                        border: 1px solid #ccc;
+                        background-color: white;
+                    }
+                    .header {
+                        font-size: 14px;
+                        margin-bottom:10px;
+                    }
+                    .line {
+                        border-top: 1px solid #ccc;
+                        margin-bottom: 20px;
+                    }
+                    .content {
+                        margin-bottom: 20px;
+                    }
+                    .footer {
+                        font-size: 12px;
+                        color: #555;
+                        border-top: 1px solid #ccc;
+                        padding-top: 20px;
+                    }
+                    .button {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        font-size: 16px;
+                        color: #fff;
+                        background-color: red;
+                        text-decoration: none;
+                        border-radius: 5px;
+                        margin-top: 10px;
+                    }
+                    /* Responsive Styles */
+                    @media only screen and (max-width: 600px) {
+                        .container {
+                            padding: 10px;
+                        }
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="header">Dear ${data.firstName} ${data.lastName},</div>
+                    <div class="content">
+                        <p>You have an incomplete eTA application.</p>
+                        <p>Your temporary application reference is: ${tempId}
+                        <p>Please click on the below link to resume your application:</p>
+                        <a href="https://main--form-site-bbb.netlify.app/register/${tempId}" class="button">RESUME APPLICATION</a>
+                        <p>Let us know if you require any assistance.</p>
+                        <p>Please apply at least (72) hours prior to your travel to Canada to allow time for an eTA to be issued.</p>
+                    </div>
+                    
+                    <div class="content">
+                        <p>Regards,</p>
+                        <p>Customer Service Dept.<br>eTA Processing Team</p>
+                    </div>
+                    <div class="footer">
+                        <p>Confidentiality Notice: This email and any attachments are confidential and may also be privileged. If you have received this message by mistake, please contact us immediately and then delete the message from your computer. Any review, retransmission, dissemination or other use of, or taking of any action in reliance upon, this information by persons or entities other than the intended recipient is prohibited. To provide you with the best online experience, our websites are using cookies.</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+            `,
           };
           
           transporter.sendMail(mailOptions, function (error, info) {
