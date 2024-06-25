@@ -70,7 +70,7 @@ class UserData {
                         padding: 10px 20px;
                         font-size: 16px;
                         color: #fff;
-                        background-color: red;
+                        background-color: #FF474C;
                         text-decoration: none;
                         border-radius: 5px;
                         margin-top: 10px;
