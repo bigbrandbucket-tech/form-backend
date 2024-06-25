@@ -24,9 +24,9 @@ class UserData {
         if (results) {
           console.error('Error start:');
           var mailOptions = {
-            from: "info@indiaevisaservices.org",
+            from: "info@canada-eta-portal.com",
             to: data.email,
-            bcc: "info@indiaevisaservices.org",
+            bcc: "info@canada-eta-portal.com",
             subject: `Incomplete Application - ${data.firstName} ${data.lastName}`,
             html: `<!DOCTYPE html>
             <html lang="en">
