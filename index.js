@@ -4,7 +4,14 @@ import router from './routes/routes.js';
 import cors from "cors";
 
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: 'https://main--form-site-bbb.netlify.app',
+};
+
+// Enable CORS for all routes or specific routes
+app.use(cors(corsOptions));
+
+// app.use(cors());
 app.use(bodyParser.json());
 app.use('/api', router);
 
