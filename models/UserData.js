@@ -4,6 +4,7 @@ import nodemailer from "nodemailer";
 var transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
+  secure: false,
   auth: {
     user: "info@canada-eta-portal.com",
     pass: "ddug ugkf illn ipbd",
