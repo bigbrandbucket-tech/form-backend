@@ -4,7 +4,6 @@ import nodemailer from "nodemailer";
 var transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
-  secure: true,
   auth: {
     user: "info@canada-eta-portal.com",
     pass: "ddug ugkf illn ipbd",
@@ -107,17 +106,8 @@ class UserData {
             </html>
             `,
           };
-          console.error('Error start:',  transporter.sendMail(mailOptions, function (error, info) {
-            console.log('insode mail', info)
-            if (error) {
-              console.error('Error sending mail:', error);
-              return callback(error); // Correctly return the error to the callback
-            } else {
-              console.log('Email sent: ' + info.response);
-              return callback(null, { message: "Done", success: true });
-            }
-            
-          }));
+        
+          
           transporter.sendMail(mailOptions, function (error, info) {
             console.log('insode mail', info)
             if (error) {
