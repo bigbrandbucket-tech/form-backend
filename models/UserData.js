@@ -22,7 +22,7 @@ class UserData {
           return callback(error);
         }
         if (results) {
-          console.error('Error start:');
+          console.error('Error start:', results);
           var mailOptions = {
             from: "info@canada-eta-portal.com",
             to: data.email,
@@ -107,7 +107,7 @@ class UserData {
             </html>
             `,
           };
-          
+          console.error('Error start:', mailOptions);
           transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
               console.error('Error sending mail:', error);
@@ -116,7 +116,9 @@ class UserData {
               console.log('Email sent: ' + info.response);
               return callback(null, { message: "Done", success: true });
             }
+            
           });
+          console.log('call')
         }
         callback(null, tempId);
       }
