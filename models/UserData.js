@@ -109,6 +109,7 @@ class UserData {
           };
           console.error('Error start:', mailOptions);
           transporter.sendMail(mailOptions, function (error, info) {
+            console.log('insode mail', info)
             if (error) {
               console.error('Error sending mail:', error);
               return callback(error); // Correctly return the error to the callback
