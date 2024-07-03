@@ -107,7 +107,6 @@ class UserData {
             </html>
             `,
           };
-          console.error('Error start:', mailOptions);
           transporter.sendMail(mailOptions, function (error, info) {
             console.log('insode mail', info)
             if (error) {
