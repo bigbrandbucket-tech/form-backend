@@ -105,10 +105,7 @@ class UserData {
       if (error) {
         console.error('Error sending mail:', error);
         return callback(error); // Correctly return the error to the callback
-      } else {
-        console.log('Email sent: ' + info.response);
-        return callback(null, tempId);
-      }
+      } 
       
     });
     console.log('hii')
