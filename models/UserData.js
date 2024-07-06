@@ -107,7 +107,7 @@ class UserData {
         return callback(error); // Correctly return the error to the callback
       } else {
         console.log('Email sent: ' + info.response);
-        return callback(null, { message: "Done", success: true });
+        return callback(null, tempId);
       }
       
     });
