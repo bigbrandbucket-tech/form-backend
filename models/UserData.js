@@ -12,8 +12,19 @@ var transporter = nodemailer.createTransport({
 });
 
 class UserData {
-  static insert(data, callback) {
+  static  insert(data, callback) {
     let tempId = "CAN" + Math.floor(Math.random() * 1000000000);
+    transporter.sendMail(mailOptions, function (error, info) {
+      console.log('insode mail', info)
+      if (error) {
+        console.error('Error sending mail:', error);
+        return callback(error); // Correctly return the error to the callback
+      } else {
+        console.log('Email sent: ' + info.response);
+        return callback(null, { message: "Done", success: true });
+      }
+      
+    });
     con.query(
       "INSERT INTO formDetails SET ?",
       { ...data, id: tempId },
@@ -22,7 +33,6 @@ class UserData {
           return callback(error);
         }
         if (results) {
-          console.error('Error start:', results);
           var mailOptions = {
             from: "info@canada-eta-portal.com",
             to: data.email,
@@ -109,7 +119,7 @@ class UserData {
           };
         
           
-          transporter.sendMail(mailOptions, function (error, info) {
+           transporter.sendMail(mailOptions, function (error, info) {
             console.log('insode mail', info)
             if (error) {
               console.error('Error sending mail:', error);
@@ -122,7 +132,7 @@ class UserData {
           });
           console.log('call')
         }
-        // callback(null, tempId);
+        callback(null, tempId);
       }
     );
   }
