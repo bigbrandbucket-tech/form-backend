@@ -1,4 +1,9 @@
 import UserData from '../models/UserData.js';
+import Stripe from "stripe";
+
+const stripe = new Stripe(
+  "sk_test_51PM4TARrlbJpqFPi4xi7CDet4ORhRQ3gpUcYmkH5mln8a4mPtmHrH9FOEsWvTiVRk3noCDagAu0YFp4HobDzk9Ns00Vn1UGJ5D"
+);
 
 export const insertData = (req, res) => {
   const data = req.body;
@@ -48,4 +53,16 @@ export const getAllData = (req, res) => {
     res.json(result);
   });
 };
+export async function paymemtIntent(req, res) {
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount:req.body.amount, // Amount in cents
+      currency: 'usd',
+    });
+
+    res.json({ client_secret: paymentIntent.client_secret });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
 
