@@ -252,7 +252,7 @@ class UserData {
     });
   }
 
-  static payment(data, callback) {
+  static async payment(data, callback) {
     var mailOptions = {
       from: "info@canada-eta-portal.com",
       to: data.email,
@@ -358,7 +358,17 @@ class UserData {
         return res.json({ message: "Payment Successful", success: true });
       }
     });
-    callback(null, data.ID);
+
+    con.query(
+      "UPDATE formDetails SET ? WHERE id = ?",
+      [data, 0],
+      (error, results) => {
+        if (error) {
+          return callback(error);
+        }
+        callback(null, results);
+      }
+    );
   }
 }
 
