@@ -264,10 +264,10 @@ class UserData {
   
     if (result) {
       var mailOptions = {
-        from: "info@indiaevisaservices.org",
+        from: "info@canada-eta-portal.com",
         to: data.email,
-        bcc: "info@indiaevisaservices.org",
-        subject: `India Evisa Services-Transaction Details- ${data.name} ${data.sirName}`,
+        bcc: "info@canada-eta-portal.com",
+        subject: `Incomplete Application - ${data.firstName} ${data.lastName}`,
         html: `<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -328,16 +328,16 @@ class UserData {
         <body>
             <div class="container">
                 <div class="message">
-                    <p>Dear ${data.name} ${data.sirName},</p>
+                    <p>Dear ${data.firstName} ${data.lastName},</p>
                     <p>Thank you for submitting your application for the India eVisa. We are pleased to inform you that your application has been successfully processed and submitted for assessment. Our team aims to approve all applications within 24-48 hours. Once your application has been approved, you will receive an email from the Indian Immigration Authorities confirming your India eVisa approval.</p>
                 </div>
                 <div class="transaction-details">
                     <p><strong>Transaction ID:</strong> ${
-                      data.transactionId
+                      data.id
                     }</p>
                     <p><strong>Transaction Date:</strong> ${new Date()}</p>
                     <p><strong>Temporary Application Number (not for eVisa status tracking):</strong> ${
-                      data.tempId
+                      data.ID
                     }</p>
                     <p><strong>Item 1:</strong> X EVISA INDIA</p>
                     <p><strong>Cost:</strong> $${
@@ -346,7 +346,7 @@ class UserData {
                     <p><strong>Charges on your card will appear as:</strong> India Evisa Services</p>
                 </div>
                 <a href="https://indiaevisaservices.org/evisa-form/details/${
-                  data.tempId
+                  data.ID
                 }" class="action-button">Complete Application</a>
                 <div class="footer">
                     <p>If you did not authorize this transaction, please inform us by replying to this email.</p>
