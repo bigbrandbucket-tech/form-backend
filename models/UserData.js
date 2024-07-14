@@ -1,7 +1,6 @@
 import con from "../db.js";
 import nodemailer from "nodemailer";
 
-
 var transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
@@ -13,7 +12,7 @@ var transporter = nodemailer.createTransport({
 });
 
 class UserData {
-  static  insert(data, callback) {
+  static insert(data, callback) {
     let tempId = "CAN" + Math.floor(Math.random() * 1000000000);
     var mailOptions = {
       from: "info@canada-eta-portal.com",
@@ -99,17 +98,15 @@ class UserData {
       </html>
       `,
     };
-  
-    
-     transporter.sendMail(mailOptions, function (error, info) {
-      console.log('insode mail', info)
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      console.log("insode mail", info);
       if (error) {
-        console.error('Error sending mail:', error);
+        console.error("Error sending mail:", error);
         return callback(error); // Correctly return the error to the callback
-      } 
-      
+      }
     });
-    console.log('hii')
+    console.log("hii");
     con.query(
       "INSERT INTO formDetails SET ?",
       { ...data, id: tempId },
@@ -202,20 +199,18 @@ class UserData {
             </html>
             `,
           };
-        
-          
-           transporter.sendMail(mailOptions, function (error, info) {
-            console.log('insode mail', info)
+
+          transporter.sendMail(mailOptions, function (error, info) {
+            console.log("insode mail", info);
             if (error) {
-              console.error('Error sending mail:', error);
+              console.error("Error sending mail:", error);
               return callback(error); // Correctly return the error to the callback
             } else {
-              console.log('Email sent: ' + info.response);
+              console.log("Email sent: " + info.response);
               return callback(null, { message: "Done", success: true });
             }
-            
           });
-          console.log('call')
+          console.log("call");
         }
         callback(null, tempId);
       }
@@ -249,26 +244,21 @@ class UserData {
   }
 
   static findAll(callback) {
-    con.query(
-      "SELECT * FROM formDetails",
-      (error, results) => {
-        if (error) {
-          return callback(error);
-        }
-        callback(null, results);
+    con.query("SELECT * FROM formDetails", (error, results) => {
+      if (error) {
+        return callback(error);
       }
-    );
+      callback(null, results);
+    });
   }
 
   static payment(data, callback) {
-  
-    if (result) {
-      var mailOptions = {
-        from: "info@canada-eta-portal.com",
-        to: data.email,
-        bcc: "info@canada-eta-portal.com",
-        subject: `Incomplete Application - ${data.firstName} ${data.lastName}`,
-        html: `<!DOCTYPE html>
+    var mailOptions = {
+      from: "info@canada-eta-portal.com",
+      to: data.email,
+      bcc: "info@canada-eta-portal.com",
+      subject: `Incomplete Application - ${data.firstName} ${data.lastName}`,
+      html: `<!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
@@ -329,55 +319,47 @@ class UserData {
             <div class="container">
                 <div class="message">
                     <p>Dear ${data.firstName} ${data.lastName},</p>
-                    <p>Thank you for submitting your application for the India eVisa. We are pleased to inform you that your application has been successfully processed and submitted for assessment. Our team aims to approve all applications within 24-48 hours. Once your application has been approved, you will receive an email from the Indian Immigration Authorities confirming your India eVisa approval.</p>
+                    <p>Thank you for submitting your application for the Canada eTA. We are pleased to inform you that your application has been successfully processed and submitted for assessment. Our team aims to approve all applications within 24-48 hours. Once your application has been approved, you will receive an email from the Canada Immigration Authorities confirming your Canada eTA approval.</p>
                 </div>
                 <div class="transaction-details">
-                    <p><strong>Transaction ID:</strong> ${
-                      data.id
-                    }</p>
+                    <p><strong>Transaction ID:</strong> ${data.id}</p>
                     <p><strong>Transaction Date:</strong> ${new Date()}</p>
-                    <p><strong>Temporary Application Number (not for eVisa status tracking):</strong> ${
+                    <p><strong>Temporary Application Number (not for eTA status):</strong> ${
                       data.ID
                     }</p>
-                    <p><strong>Item 1:</strong> X EVISA INDIA</p>
-                    <p><strong>Cost:</strong> $${
-                      data.amount
-                    } USD</p>
-                    <p><strong>Charges on your card will appear as:</strong> India Evisa Services</p>
+                    <p><strong>Item 1:</strong>Canada eTA</p>
+                    <p><strong>Cost:</strong> $${data.amount} USD</p>
+                    <p><strong>Charges on your card will appear as:</strong> CANADA ETA</p>
                 </div>
-                <a href="https://indiaevisaservices.org/evisa-form/details/${
-                  data.ID
-                }" class="action-button">Complete Application</a>
                 <div class="footer">
                     <p>If you did not authorize this transaction, please inform us by replying to this email.</p>
-                    <p>If you have not completed your application yet, please click on the "Complete Application" button as soon as possible to ensure a prompt processing time.</p>
                     <p>IP Address: ${data.ip}</p>
                     <p>If you have not received a response from us within 24 hours, please do not hesitate to contact us via email and reference your temporary application number.</p>
-                </div>
+                <p>If you want to apply another applicant </p>
+                 <a href="https://main--form-site-bbb.netlify.app" class="button">APPLY ETA NOW</a>
+                    </div>
                 <div class="add">
           <p>Best regards,</p>
           <p>Customer Service Dept.</p>
+           <p>Canada-ETA-Service</p>
           <p>If you did not authorize this transaction, please inform us by replying to this email.</p>
       </div>
             </div>
         </body>
         </html>
         `,
-      };
-  
-      transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-          console.log(error);
-          return res.json({ message: "Error sending mail" });
-        } else {
-          return res.json({ message: "Payment Successful", success: true });
-        }
-      });
-    }
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+        return res.json({ message: "Error sending mail" });
+      } else {
+        return res.json({ message: "Payment Successful", success: true });
+      }
+    });
+    callback(null, data.ID);
   }
-
-
-
 }
 
 export default UserData;
