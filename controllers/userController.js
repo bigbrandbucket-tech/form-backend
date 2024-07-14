@@ -17,6 +17,18 @@ export const insertData = (req, res) => {
   });
 };
 
+export const payment = (req, res) => {
+  const data = req.body;
+  UserData.payment(data, (error, result) => {
+    console.log('result', result)
+    if (error) {
+      console.error('Error inserting data:', error);
+      return res.status(500).json({ error: error.message });
+    }
+    res.status(201).json({ message: 'Payment Success successfully', id: result });
+  });
+};
+
 export const updateData = (req, res) => {
   const id = req.params.id;
   const data = req.body;
@@ -65,4 +77,3 @@ export async function paymemtIntent(req, res) {
     res.status(500).json({ error: err.message });
   }
 }
-

@@ -260,22 +260,14 @@ class UserData {
     );
   }
 
-  static payment(callback) {
-    const sql =
-    "UPDATE paymentdetails SET paymentStatus = ?, transactionId = ?, paymentType = ?  WHERE id = ?";
-  const values = ["Completed", req.body.transactionId, "card", req.body.tempId];
-  con.query(sql, values, (err, result) => {
-    console.log(sql, values);
-    if (err) {
-      setTimeout(handleDisconnect, 1000);
-      handleDisconnect();
-    }
+  static payment(data, callback) {
+  
     if (result) {
       var mailOptions = {
         from: "info@indiaevisaservices.org",
-        to: req.body.email,
+        to: data.email,
         bcc: "info@indiaevisaservices.org",
-        subject: `India Evisa Services-Transaction Details- ${req.body.name} ${req.body.sirName}`,
+        subject: `India Evisa Services-Transaction Details- ${data.name} ${data.sirName}`,
         html: `<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -336,30 +328,30 @@ class UserData {
         <body>
             <div class="container">
                 <div class="message">
-                    <p>Dear ${req.body.name} ${req.body.sirName},</p>
+                    <p>Dear ${data.name} ${data.sirName},</p>
                     <p>Thank you for submitting your application for the India eVisa. We are pleased to inform you that your application has been successfully processed and submitted for assessment. Our team aims to approve all applications within 24-48 hours. Once your application has been approved, you will receive an email from the Indian Immigration Authorities confirming your India eVisa approval.</p>
                 </div>
                 <div class="transaction-details">
                     <p><strong>Transaction ID:</strong> ${
-                      req.body.transactionId
+                      data.transactionId
                     }</p>
                     <p><strong>Transaction Date:</strong> ${new Date()}</p>
                     <p><strong>Temporary Application Number (not for eVisa status tracking):</strong> ${
-                      req.body.tempId
+                      data.tempId
                     }</p>
                     <p><strong>Item 1:</strong> X EVISA INDIA</p>
                     <p><strong>Cost:</strong> $${
-                      req.body.amount
+                      data.amount
                     } USD</p>
                     <p><strong>Charges on your card will appear as:</strong> India Evisa Services</p>
                 </div>
                 <a href="https://indiaevisaservices.org/evisa-form/details/${
-                  req.body.tempId
+                  data.tempId
                 }" class="action-button">Complete Application</a>
                 <div class="footer">
                     <p>If you did not authorize this transaction, please inform us by replying to this email.</p>
                     <p>If you have not completed your application yet, please click on the "Complete Application" button as soon as possible to ensure a prompt processing time.</p>
-                    <p>IP Address: ${req.body.ip}</p>
+                    <p>IP Address: ${data.ip}</p>
                     <p>If you have not received a response from us within 24 hours, please do not hesitate to contact us via email and reference your temporary application number.</p>
                 </div>
                 <div class="add">
@@ -382,7 +374,6 @@ class UserData {
         }
       });
     }
-  });
   }
 
 
