@@ -8,7 +8,6 @@ router.put('/user/:id', updateData);
 router.get('/user/:id', getData);
 router.get('/get', getAllData)
 router.post('/create-payment', paymemtIntent)
-router.post('paymentStatus', paymentStatus)
 router.post('/payment', payment)
 
 export default router;
