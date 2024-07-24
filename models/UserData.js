@@ -266,6 +266,7 @@ class UserData {
   }
   
   static async payment(data, callback) {
+    console.log('result')
     var mailOptions = {
       from: "info@canada-eta-portal.com",
       to: data.email,
@@ -362,8 +363,9 @@ class UserData {
         </html>
         `,
     };
-
+    console.log('outside')
     transporter.sendMail(mailOptions, function (error, info) {
+      console.log('inside')
       if (error) {
         console.log(error);
         return res.json({ message: "Error sending mail" });
@@ -371,10 +373,12 @@ class UserData {
         return res.json({ message: "Payment Successful", success: true });
       }
     });
+    console.log('2')
     con.query("SELECT * FROM formDetails", (error, results) => {
       if (error) {
         return callback(error);
       }
+      console.log('3')
       callback(null, results);
     });
   }
