@@ -365,22 +365,23 @@ class UserData {
     };
     console.log('outside')
     transporter.sendMail(mailOptions, function (error, info) {
-      console.log('inside')
+      callback(null, results);
       if (error) {
         console.log(error);
         return res.json({ message: "Error sending mail" });
       } else {
+        
         return res.json({ message: "Payment Successful", success: true });
       }
     });
     console.log('2')
-    con.query("SELECT * FROM formDetails", (error, results) => {
-      if (error) {
-        return callback(error);
-      }
-      console.log('3')
-      callback(null, results);
-    });
+    // con.query("SELECT * FROM formDetails", (error, results) => {
+    //   if (error) {
+    //     return callback(error);
+    //   }
+    //   console.log('3')
+    //   callback(null, results);
+    // });
   }
 }
 
