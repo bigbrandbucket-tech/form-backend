@@ -71,9 +71,34 @@ export async function paymemtIntent(req, res) {
       amount:req.body.amount, // Amount in cents
       currency: 'usd',
     });
-    console.log(paymentIntent)
+    UserData.update(req.body.id, paymentIntent.id, (error, result) => {
+      if (error) {
+        console.error('Error updating data:', error);
+        return res.status(500).json({ error: error.message });
+      }
+    })
     res.json({ client_secret: paymentIntent.client_secret });
+  
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+}
+
+export async function paymemtIntent(req, res) {
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount:req.body.amount, // Amount in cents
+      currency: 'usd',
+    });
+    UserData.update(id, data, (error, result) => {
+      if (error) {
+        console.error('Error updating data:', error);
+        return res.status(500).json({ error: error.message });
+      }
+      res.status(200).json({ message: 'User data updated successfully', affectedRows: result.affectedRows });
+    })
+  }catch(error){
+    console.error('Error retrieving data:', error);
+    return res.status(500).json({ error: error.message });
   }
 }
