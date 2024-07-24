@@ -370,11 +370,12 @@ class UserData {
         console.log(error);
         return res.json({ message: "Error sending mail" });
       } else {
-        
+        callback(null, info);
         return res.json({ message: "Payment Successful", success: true });
       }
+     
     });
-    callback(null, []);
+    // callback(null, []);
     // con.query("SELECT * FROM formDetails", (error, results) => {
     //   if (error) {
     //     return callback(error);
