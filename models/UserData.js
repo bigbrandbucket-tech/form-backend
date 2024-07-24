@@ -252,6 +252,19 @@ class UserData {
     });
   }
 
+  static updateTransaction(id, transactionId, callback) {
+    con.query(
+      "UPDATE formDetails SET transactionId WHERE id = ?",
+      [transactionId, id],
+      (error, results) => {
+        if (error) {
+          return callback(error);
+        }
+        callback(null, results[0]);
+      }
+    );
+  }
+
   static async payment(data, callback) {
     var mailOptions = {
       from: "info@canada-eta-portal.com",
