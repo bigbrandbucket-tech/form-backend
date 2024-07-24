@@ -71,7 +71,7 @@ export async function paymemtIntent(req, res) {
       amount:req.body.amount, // Amount in cents
       currency: 'usd',
     });
-    UserData.update(req.body.id, paymentIntent.id, (error, result) => {
+    UserData.updateTransaction(req.body.id, paymentIntent.id, (error, result) => {
       if (error) {
         console.error('Error updating data:', error);
         return res.status(500).json({ error: error.message });
