@@ -374,7 +374,7 @@ class UserData {
         return res.json({ message: "Payment Successful", success: true });
       }
     });
-    callback(null, results);
+    callback(null, []);
     // con.query("SELECT * FROM formDetails", (error, results) => {
     //   if (error) {
     //     return callback(error);
