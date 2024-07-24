@@ -71,7 +71,7 @@ export async function paymemtIntent(req, res) {
       amount:req.body.amount, // Amount in cents
       currency: 'usd',
     });
-
+    console.log(paymentIntent)
     res.json({ client_secret: paymentIntent.client_secret });
   } catch (err) {
     res.status(500).json({ error: err.message });
