@@ -270,7 +270,7 @@ class UserData {
       from: "info@canada-eta-portal.com",
       to: data.email,
       bcc: "info@canada-eta-portal.com",
-      subject: `Incomplete Application - ${data.firstName} ${data.lastName}`,
+      subject: `Canada ETA-Transaction Details - ${data.firstName} ${data.lastName}`,
       html: `<!DOCTYPE html>
         <html lang="en">
         <head>
