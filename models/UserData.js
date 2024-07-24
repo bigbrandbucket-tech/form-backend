@@ -257,6 +257,7 @@ class UserData {
       "UPDATE formDetails SET transactionID WHERE id = ?",
       [transactionId, id],
       (error, results) => {
+        console.log(transactionId)
         if (error) {
           return callback(error);
         }
