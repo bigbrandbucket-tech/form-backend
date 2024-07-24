@@ -254,7 +254,7 @@ class UserData {
 
   static updateTransaction(id, transactionId, callback) {
     con.query(
-      "UPDATE formDetails SET transactionId WHERE id = ?",
+      "UPDATE formDetails SET transactionID WHERE id = ?",
       [transactionId, id],
       (error, results) => {
         if (error) {
