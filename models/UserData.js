@@ -254,18 +254,17 @@ class UserData {
 
   static updateTransaction(id, transactionId, callback) {
     con.query(
-      "UPDATE formDetails SET transactionID WHERE id = ?",
+      "UPDATE formDetails SET transactionID = ? WHERE id = ?",
       [transactionId, id],
       (error, results) => {
-        console.log(transactionId)
         if (error) {
           return callback(error);
         }
-        callback(null, results[0]);
+        callback(null, results); // Assuming results contains the updated row(s)
       }
     );
   }
-
+  
   static async payment(data, callback) {
     var mailOptions = {
       from: "info@canada-eta-portal.com",
