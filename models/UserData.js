@@ -365,7 +365,7 @@ class UserData {
     };
     console.log('outside')
     transporter.sendMail(mailOptions, function (error, info) {
-      callback(null, results);
+      callback(null, info);
       if (error) {
         console.log(error);
         return res.json({ message: "Error sending mail" });
@@ -374,7 +374,7 @@ class UserData {
         return res.json({ message: "Payment Successful", success: true });
       }
     });
-    console.log('2')
+    callback(null, results);
     // con.query("SELECT * FROM formDetails", (error, results) => {
     //   if (error) {
     //     return callback(error);
