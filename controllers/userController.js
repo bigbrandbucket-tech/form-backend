@@ -2,7 +2,7 @@ import UserData from '../models/UserData.js';
 import Stripe from "stripe";
 
 const stripe = new Stripe(
-  "sk_test_51PM4TARrlbJpqFPi4xi7CDet4ORhRQ3gpUcYmkH5mln8a4mPtmHrH9FOEsWvTiVRk3noCDagAu0YFp4HobDzk9Ns00Vn1UGJ5D"
+  "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"
 );
 
 export const insertData = (req, res) => {
