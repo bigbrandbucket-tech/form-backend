@@ -5,7 +5,7 @@ import cors from "cors";
 
 const app = express();
 const corsOptions = {
-  origin: 'https://main--form-site-bbb.netlify.app',
+  origin: 'https://canada-eta-portal.com/etaapplicationform/',
 };
 
 // Enable CORS for all routes or specific routes
