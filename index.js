@@ -5,7 +5,7 @@ import cors from "cors";
 
 const app = express();
 const corsOptions = {
-  origin: 'https://canada-eta-portal.com/etaapplicationform/',
+  origin: 'https://canada-eta-portal.com',
 };
 
 // Enable CORS for all routes or specific routes
