@@ -7,6 +7,7 @@ const app = express();
 const corsOptions = {
   origin: [
     'https://canada-eta-portal.com',
+    'http://localhost:5173',
     'https://main--form-site-bbb.netlify.app',
   ],
 };
