@@ -269,9 +269,10 @@ class UserData {
     console.log('result')
     var mailOptions = {
       from: "info@canada-eta-portal.com",
-      to: data.email,
+      to: data.email||data.paymentIntent.payer.email_address,
       bcc: "info@canada-eta-portal.com",
-      subject: `Canada ETA-Transaction Details - ${data.firstName} ${data.lastName}`,
+      subject: `Canada ETA-Transaction Details - ${data.firstName
+      } ${data.lastName}`,
       html: `<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -332,17 +333,18 @@ class UserData {
         <body>
             <div class="container">
                 <div class="message">
-                    <p>Dear ${data.firstName} ${data.lastName},</p>
+                    <p>Dear ${data.firstName
+      } ${data.lastName},</p>
                     <p>Thank you for submitting your application for the Canada eTA. We are pleased to inform you that your application has been successfully processed and submitted for assessment. Our team aims to approve all applications within 24-48 hours. Once your application has been approved, you will receive an email from the Canada Immigration Authorities confirming your Canada eTA approval.</p>
                 </div>
                 <div class="transaction-details">
-                    <p><strong>Transaction ID:</strong> ${data.id}</p>
+                    <p><strong>Transaction ID:</strong> ${data.orderId}</p>
                     <p><strong>Transaction Date:</strong> ${new Date()}</p>
                     <p><strong>Temporary Application Number (not for eTA status):</strong> ${
-                      data.ID
+                      data.id
                     }</p>
                     <p><strong>Item 1:</strong>Canada eTA</p>
-                    <p><strong>Cost:</strong> $${data.amount} USD</p>
+                    <p><strong>Cost:</strong> $${data.paymentIntent.purchase_units[0].amount.value} USD</p>
                     <p><strong>Charges on your card will appear as:</strong> CANADA ETA</p>
                 </div>
                 <div class="footer">
