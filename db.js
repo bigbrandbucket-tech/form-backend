@@ -12,7 +12,7 @@ let con = mysql.createConnection({
     password: "Crm@2020#",
     database: "u619479099_crm",
     waitForConnections: true,
-    connectionLimit: 50000,
+    connectionLimit: 5000,
     queueLimit: 5000,
   });
 
