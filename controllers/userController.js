@@ -27,6 +27,7 @@ export const insertData = (req, res) => {
 
 export const payment = (req, res) => {
   const data = req.body;
+  console.log("Called!",data);
   UserData.payment(data, (error, result) => {
   
     if (error) {
