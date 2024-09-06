@@ -269,10 +269,10 @@ class UserData {
     console.log('result')
     var mailOptions = {
       from: "info@canada-eta-portal.com",
-      to: data.email||data.paymentIntent.payer.email_address,
+      to: data.details.email||data.paymentIntent.payer.email_address,
       bcc: "info@canada-eta-portal.com",
-      subject: `Canada ETA-Transaction Details - ${data.firstName
-      } ${data.lastName}`,
+      subject: `Canada ETA-Transaction Details - ${data.details.firstName
+      } ${data.details.lastName}`,
       html: `<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -333,8 +333,8 @@ class UserData {
         <body>
             <div class="container">
                 <div class="message">
-                    <p>Dear ${data.firstName
-      } ${data.lastName},</p>
+                    <p>Dear ${data.details.firstName
+      } ${data.details.lastName},</p>
                     <p>Thank you for submitting your application for the Canada eTA. We are pleased to inform you that your application has been successfully processed and submitted for assessment. Our team aims to approve all applications within 24-48 hours. Once your application has been approved, you will receive an email from the Canada Immigration Authorities confirming your Canada eTA approval.</p>
                 </div>
                 <div class="transaction-details">
@@ -349,7 +349,7 @@ class UserData {
                 </div>
                 <div class="footer">
                     <p>If you did not authorize this transaction, please inform us by replying to this email.</p>
-                    <p>IP Address: ${data.ip}</p>
+                    <p>IP Address: ${data.details.ip}</p>
                     <p>If you have not received a response from us within 24 hours, please do not hesitate to contact us via email and reference your temporary application number.</p>
                 <p>If you want to apply another applicant </p>
                  <a href="https://main--form-site-bbb.netlify.app" class="button">APPLY ETA NOW</a>
