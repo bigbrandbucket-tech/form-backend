@@ -2,11 +2,14 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import router from './routes/routes.js';
 import cors from "cors";
-
+import { configDotenv } from 'dotenv';
+configDotenv();
+// console.log(process.env.PAYPAL_SECRET)
 const app = express();
 const corsOptions = {
   origin: [
     'https://canada-eta-portal.com',
+    'http://localhost:5173',
     'https://main--form-site-bbb.netlify.app',
   ],
 };

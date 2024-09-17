@@ -1,24 +1,25 @@
 import UserData from '../models/UserData.js';
 import Stripe from "stripe";
-
-const stripe = new Stripe(
-  "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"
-);
+import { configDotenv } from 'dotenv';
+configDotenv();
+// const stripe = new Stripe(
+//   "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"
+// );
 import paypal from '@paypal/checkout-server-sdk';
 
-// const environment = new paypal.core.LiveEnvironment(
-//   'AXR-yGRo04puXuV_nMIgGO6oeO_7PBcFxU0ieFLRei8oTHlvF1kyzhH5dTH6M7N1UV7PLJ03QzXPAzk6',
-//   'PAYPAL_CLIENT_SECRET'
-// );
-// const paypalClient = new paypal.core.PayPalHttpClient(environment);
-const environment = new paypal.core.SandboxEnvironment('AQbGfUMi_-GeuUpGOtoWVsC61MjF_b0zll4KaKHkOXjVadggTeVxhlFYdhe3ebRCr-lBrS_raHq9K01c', 'EIVscdKgNKWAXgIQY3Lfs1Q2ZUX38FnfFu9aVSqA5lQCgfPCirkxRdjcLymvUh5awjECFy8VBY_F0chV');
+const environment = new paypal.core.LiveEnvironment(
+  process.env.PAYPAL_CLIENT,
+  process.env.PAYPAL_SECRET,
+);
 const paypalClient = new paypal.core.PayPalHttpClient(environment);
+// const environment = new paypal.core.SandboxEnvironment('AQbGfUMi_-GeuUpGOtoWVsC61MjF_b0zll4KaKHkOXjVadggTeVxhlFYdhe3ebRCr-lBrS_raHq9K01c', 'EIVscdKgNKWAXgIQY3Lfs1Q2ZUX38FnfFu9aVSqA5lQCgfPCirkxRdjcLymvUh5awjECFy8VBY_F0chV');
+// const paypalClient = new paypal.core.PayPalHttpClient(environment);
 export const insertData = (req, res) => {
   const data = req.body;
   UserData.insert(data, (error, result) => {
     console.log('result', result)
     if (error) {
-      console.error('Error inserting data:', error);
+      console.error('Error inserting data:', error.message);
       return res.status(500).json({ error: error.message });
     }
     res.status(201).json({ message: 'User data inserted successfully', id: result });
@@ -91,6 +92,7 @@ export async function paymentIntent(req, res) {
   try {
     const request = new paypal.orders.OrdersCreateRequest();
     request.prefer("return=representation");
+    console.log(request);
     request.requestBody({
       intent: 'CAPTURE',
       purchase_units: [{
@@ -100,8 +102,9 @@ export async function paymentIntent(req, res) {
         },
       }],
     });
-
+    console.log("Yha Tak");
     const order = await paypalClient.execute(request);
+    console.log("Yha Tak");
     
     UserData.updateTransaction(req.body.id, order.result.id, (error, result) => {
       if (error) {
