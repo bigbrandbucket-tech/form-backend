@@ -98,7 +98,7 @@ export async function paymentIntent(req, res) {
       purchase_units: [{
         amount: {
           currency_code: 'USD',
-          value: '1000.00',  // Amount in USD
+          value: '1.00',  // Amount in USD
         },
       }],
     });
