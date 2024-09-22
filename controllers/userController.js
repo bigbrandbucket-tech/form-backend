@@ -68,7 +68,7 @@ export const getAllData = (req, res) => {
 export async function paymemtIntent(req, res) {
   try {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount:100, // Amount in cents
+      amount:7900, // Amount in cents
       currency: 'usd',
     });
     UserData.updateTransaction(req.body.id, paymentIntent.id, (error, result) => {
