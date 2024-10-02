@@ -182,7 +182,7 @@ class UserData {
                         <p>You have an incomplete eTA application.</p>
                         <p>Your temporary application reference is: ${tempId}
                         <p>Please click on the below link to resume your application:</p>
-                        <a href="https://main--form-site-bbb.netlify.app/register/${tempId}" class="button">RESUME APPLICATION</a>
+                        <a href="https://canada-eta-portal.com/etaapplicationform/register/${tempId}" class="button">RESUME APPLICATION</a>
                         <p>Let us know if you require any assistance.</p>
                         <p>Please apply at least (72) hours prior to your travel to Canada to allow time for an eTA to be issued.</p>
                     </div>
@@ -350,7 +350,7 @@ class UserData {
                     <p>IP Address: ${data.ip}</p>
                     <p>If you have not received a response from us within 24 hours, please do not hesitate to contact us via email and reference your temporary application number.</p>
                 <p>If you want to apply another applicant </p>
-                 <a href="https://main--form-site-bbb.netlify.app" class="button">APPLY ETA NOW</a>
+                 <a href="https://canada-eta-portal.com/etaapplicationform/" class="button">APPLY ETA NOW</a>
                     </div>
                 <div class="add">
           <p>Best regards,</p>
